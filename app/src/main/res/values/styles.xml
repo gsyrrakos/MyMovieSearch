@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="H2">
+        <item name="android:fontFamily">@font/knockout_htf68_fullfeatherwt</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">56sp</item>
+        <item name="android:lineHeight" tools:targetApi="p">45sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="Paragraph2">
+        <item name="android:fontFamily">@font/sf_pro_text_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineHeight" tools:targetApi="p">26sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="Paragraph1rounded">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">@font/knockout_htf68_fullfeatherwt</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/rounded_button</item>
+    </style>
+
+    <style name="round_button" parent="TextAppearance.AppCompat.Widget.Button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">@font/knockout_htf68_fullfeatherwt</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/rounded_button</item>
+    </style>
+
+    <style name="DialogRoundedCornersNoNavBarDim" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/DialogStyle</item>
+    </style>
+    <style name="DialogStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/dialog_bg</item>
+    </style>
+
+    <style name="RoundedButton"></style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Gets rid of the search icon -->
+        <!-- Text Size -->
+        <!-- Query Text Color -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <!-- Hint Color -->
+        <item name="android:textColorHint">@color/white</item>
+        <!-- Icon Color -->
+        <item name="android:tint">@color/white</item>
+        <!-- The hint text that appears when the user has not typed anything -->
+
+    </style>
+
+</resources>
