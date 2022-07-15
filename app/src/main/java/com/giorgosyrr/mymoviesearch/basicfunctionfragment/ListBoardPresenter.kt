@@ -20,25 +20,27 @@ class ListBoardPresenter @Inject constructor(
     private var repository: DataRepository = repository
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    override fun getData(hasNetwork: Boolean, query:String, page:Int) {
+    override fun getData(hasNetwork: Boolean, query: String, page: Int) {
         if (hasNetwork) {
-            getDataRemote(query,page)
+            getDataRemote(query, page)
         }
     }
 
 
+    private fun getDataRemote(query: String = "alien", page: Int = 1) {
 
-    private fun getDataRemote(query:String="alien",page:Int=1) {
-
-        compositeDisposable.add(repository.getMovies(query,page)
+        compositeDisposable.add(repository.getMovies(query, page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ listBoard ->
                 Log.d("edw", listBoard.toString())
 
-               view.loadFirstData(listBoard) }
-            ) { throwable -> view.displayNetworkError(throwable.toString())
-            Log.d("edw",throwable.toString())})
+                view.loadFirstData(listBoard)
+            }
+            ) { throwable ->
+                view.displayNetworkError(throwable.toString())
+                Log.d("edw", throwable.toString())
+            })
 
     }
 
@@ -46,15 +48,15 @@ class ListBoardPresenter @Inject constructor(
     override fun getDataRemoteNextPage(
         currentPage: Int,
         hasNetwork: Boolean,
-        query:String,
+        query: String,
         items: ArrayList<Results?>
     ) {
         if (hasNetwork) {
 
-            compositeDisposable.add(repository.getMovies(query,currentPage+1)
+            compositeDisposable.add(repository.getMovies(query, currentPage + 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ dataFromApi -> view.displayDownloadResults(dataFromApi,items) }
+                .subscribe({ dataFromApi -> view.displayDownloadResults(dataFromApi, items) }
                 ) { throwable -> view.displayNetworkError(throwable.toString()) })
 
         }

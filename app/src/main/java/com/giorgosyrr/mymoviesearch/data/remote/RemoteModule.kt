@@ -38,7 +38,6 @@ class RemoteModule {
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
         return OkHttpClient.Builder()
             .addInterceptor(logging)
-            //.addInterceptor(BasicAuthInterceptor("test_me",     "G00dw1LL"))
             .build()
     }
 
