@@ -6,11 +6,30 @@
     android:layout_height="match_parent"
     android:background="#F5F4F1"
     android:paddingBottom="10dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/noResults"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
+        <TextView
+            android:id="@+id/header_no_results"
+            style="@style/H2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="No Search Results!"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <SearchView
         android:id="@+id/idSV"
-        style="@style/SearchViewStyle"
+        android:theme="@style/SearchViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_dark_texture_small"

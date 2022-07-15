@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +21,6 @@ import com.giorgosyrr.mymoviesearch.BaseApplication
 import com.giorgosyrr.mymoviesearch.MainActivity
 import com.giorgosyrr.mymoviesearch.R
 import com.giorgosyrr.mymoviesearch.basicfunctionfragment.adapter.CustomAdapter
-
 import com.giorgosyrr.mymoviesearch.basicfunctionfragment.dialog.PersonalInfoDialog
 import com.giorgosyrr.mymoviesearch.data.model.DataFromApi
 import com.giorgosyrr.mymoviesearch.data.model.Results
@@ -43,6 +43,7 @@ class ListBoardFragment : Fragment(), ListBoardContract.View {
     private var listBoard: DataFromApi? = null
     private var searchView: SearchView? = null
     private var movieQuery: String? = null
+    private var layoutConstraint: ConstraintLayout? = null
     private val isNetworkAvailable: Boolean
         get() {
             val cm: ConnectivityManager =
@@ -72,11 +73,13 @@ class ListBoardFragment : Fragment(), ListBoardContract.View {
         recyclerView?.layoutManager = layoutManager
         recyclerView?.itemAnimator = DefaultItemAnimator()
         searchView = binding.idSV
+        layoutConstraint = binding.noResults
 
 
         // listener for our search view.
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                layoutConstraint?.visibility = View.GONE
                 listCached = null
                 movieQuery = query
                 recyclerView?.adapter = adapter
@@ -85,9 +88,11 @@ class ListBoardFragment : Fragment(), ListBoardContract.View {
                 presenter?.getData(isNetworkAvailable, query ?: "alien", 1)
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
                 return false
             }
+
         })
 
 
@@ -128,13 +133,17 @@ class ListBoardFragment : Fragment(), ListBoardContract.View {
         binding.progressBar.visibility = View.GONE
         listCached = dataFromApi.results
         this.listBoard = dataFromApi
-        adapter = CustomAdapter(dataFromApi.results)
-        recyclerView?.adapter = adapter
-        initScrollListener(dataFromApi)
-        binding.myRecyclerView.visibility = View.VISIBLE
+        if (dataFromApi.results.isEmpty()) {
+            layoutConstraint?.visibility = View.VISIBLE
+        } else {
+            adapter = CustomAdapter(dataFromApi.results)
+            recyclerView?.adapter = adapter
+            initScrollListener(dataFromApi)
+            binding.myRecyclerView.visibility = View.VISIBLE
+        }
     }
 
-//for paging custom solution
+    //for paging custom solution
     private fun initScrollListener(items: DataFromApi) {
         recyclerView!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

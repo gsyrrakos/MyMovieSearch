@@ -39,6 +39,9 @@ class CustomAdapter(var data: ArrayList<Results?>) :
             val model = data[position]
             if (model != null) {
                 populateItemRows(viewHolder, model)
+            }else{
+
+
             }
         } else if (viewHolder is LoadingViewHolder) {
             showLoadingView(viewHolder, position)
