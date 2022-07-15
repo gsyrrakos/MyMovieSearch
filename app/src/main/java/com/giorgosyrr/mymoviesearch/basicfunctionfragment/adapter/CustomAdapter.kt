@@ -50,7 +50,7 @@ class CustomAdapter(var data: ArrayList<Results?>) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (data!![position] == null) VIEW_TYPE_LOADING else VIEW_TYPE_ITEM
+        return if (data[position] == null) VIEW_TYPE_LOADING else VIEW_TYPE_ITEM
     }
 
     private inner class ItemViewHolder(itemView: View) :
@@ -80,11 +80,9 @@ class CustomAdapter(var data: ArrayList<Results?>) :
     }
 
 
-
     private fun showLoadingView(viewHolder: LoadingViewHolder, position: Int) {
         //ProgressBar would be displayed
     }
-
 
 
     private fun populateItemRows(holder: ItemViewHolder, model: Results) {
@@ -94,11 +92,11 @@ class CustomAdapter(var data: ArrayList<Results?>) :
 
         holder.mTextViewRating.text = model.voteAverage.toString()
 
-        renderNestedList(holder, model)
+        onClickDetails(holder, model)
     }
 
 
-    private fun renderNestedList(holder: ItemViewHolder, model: Results) {
+    private fun onClickDetails(holder: ItemViewHolder, model: Results) {
 
         holder.linearLayout.setOnClickListener {
             val myActivity = holder.itemView.context as MainActivity

@@ -1,8 +1,5 @@
 package com.giorgosyrr.mymoviesearch.di
 
-
-
-
 import com.giorgosyrr.mymoviesearch.BaseApplication
 
 import com.giorgosyrr.mymoviesearch.data.remote.RemoteModule

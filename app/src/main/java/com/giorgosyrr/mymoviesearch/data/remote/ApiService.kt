@@ -10,7 +10,7 @@ import retrofit2.http.Query
 
 interface ApiService {
     //very radical solution for some reason on the header throws 401
-    @GET(Constants.API_RATES_ENDPOINT+"api_key=2810b46c0fe82e2e7eb43466581d495f")
+    @GET(Constants.API_ENDPOINT+"api_key=2810b46c0fe82e2e7eb43466581d495f")
     fun getMovies(@Query("query") queryCode:String, @Query("page") pageCode:Int) : Observable<DataFromApi>
 
 

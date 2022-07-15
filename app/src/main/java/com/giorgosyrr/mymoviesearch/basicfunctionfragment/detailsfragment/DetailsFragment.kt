@@ -62,7 +62,7 @@ class DetailsFragment : Fragment() {
             activity?.supportFragmentManager?.popBackStack()
         }
 
-        Glide.with(this).load("https://image.tmdb.org/t/p/w500" + param2)
+        Glide.with(this).load("https://image.tmdb.org/t/p/w500$param2")
             .placeholder(R.drawable.ic_launcher_foreground).into(thumbnailImage!!)
         mTextView?.text = param1
         mTextViewDescr2?.text = param3

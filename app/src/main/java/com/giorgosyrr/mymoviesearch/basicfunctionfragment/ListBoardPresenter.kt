@@ -35,7 +35,6 @@ class ListBoardPresenter @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ listBoard ->
                 Log.d("edw", listBoard.toString())
-                //  repository.insertData(listBoard)
 
                view.loadFirstData(listBoard) }
             ) { throwable -> view.displayNetworkError(throwable.toString())
